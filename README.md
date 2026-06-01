@@ -2,7 +2,7 @@
 
 🎓 BSc Data Science & Artificial Intelligence — Woxsen University, Hyderabad (2023–2026)  
 📍 Medak, Telangana, India  
-📧 lokesh.reddy_2026@woxsen.edu.in  
+📧 reddypolicelokesh@gmail.com
 📱 +91 7901450537  
 🔗 [LinkedIn](https://www.linkedin.com/in/police-lokesh-reddy/) | [Resume](https://your-username.github.io)
 
