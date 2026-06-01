@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Police Lokesh Reddy — Data Science & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink:        #0d0e12;
+    --paper:      #f5f3ee;
+    --accent:     #1a3cff;
+    --accent2:    #ff4c29;
+    --muted:      #6b6f7a;
+    --rule:       #d9d5cc;
+    --mono:       'DM Mono', monospace;
+    --sans:       'DM Sans', sans-serif;
+    --display:    'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Grain overlay ─────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── Layout ─────────────────────────────────────── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* ── Header ─────────────────────────────────────── */
+  .hero {
+    padding: 72px 0 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    border-bottom: 1.5px solid var(--ink);
+    animation: fadeUp .7s ease both;
+  }
+
+  .hero-left {}
+
+  .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-weight: 800;
+    line-height: .95;
+    letter-spacing: -.02em;
+    margin-bottom: 18px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .tagline {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.55;
+  }
+
+  .contact-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    padding-bottom: 4px;
+  }
+
+  .contact-stack a,
+  .contact-stack span {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+
+  .contact-stack a:hover { color: var(--accent); }
+
+  .badge {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ── Sections ────────────────────────────────────── */
+  .section {
+    padding-top: 52px;
+    animation: fadeUp .6s ease both;
+  }
+
+  .section:nth-child(2) { animation-delay: .08s; }
+  .section:nth-child(3) { animation-delay: .16s; }
+  .section:nth-child(4) { animation-delay: .24s; }
+  .section:nth-child(5) { animation-delay: .32s; }
+  .section:nth-child(6) { animation-delay: .40s; }
+  .section:nth-child(7) { animation-delay: .48s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent2);
+    font-weight: 500;
+    min-width: 24px;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── Summary ─────────────────────────────────────── */
+  .summary-text {
+    font-size: 15.5px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 700px;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+  }
+
+  /* ── Experience ──────────────────────────────────── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+
+  .exp-meta { padding-top: 3px; }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .exp-location {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    display: block;
+  }
+
+  .exp-role {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -.01em;
+  }
+
+  .exp-sub {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--accent2);
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .exp-bullets { list-style: none; }
+
+  .exp-bullets li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  .exp-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .pill {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 3px 9px;
+    color: var(--muted);
+    transition: all .2s;
+  }
+
+  .pill:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* ── Projects ────────────────────────────────────── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .proj-card {
+    border: 1.5px solid var(--rule);
+    padding: 24px;
+    position: relative;
+    transition: border-color .25s, transform .25s;
+    background: #faf9f6;
+  }
+
+  .proj-card:hover {
+    border-color: var(--ink);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .proj-tag {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .proj-title {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+  }
+
+  .proj-bullets { list-style: none; }
+
+  .proj-bullets li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .proj-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    top: 2px;
+  }
+
+  /* ── Skills ──────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .skill-row {
+    display: contents;
+  }
+
+  .skill-row > * {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skill-cat {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding-right: 20px;
+  }
+
+  .skill-vals {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* ── Education ───────────────────────────────────── */
+  .edu-list { display: flex; flex-direction: column; gap: 22px; }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    align-items: baseline;
+  }
+
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .edu-deg {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin-bottom: 2px;
+  }
+
+  .edu-inst {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  /* ── Certifications ──────────────────────────────── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .cert-item {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    padding: 10px 14px;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .cert-item::before {
+    content: '✓';
+    position: absolute;
+    left: 10px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* ── Languages & extras ──────────────────────────── */
+  .langs {
+    display: flex;
+    gap: 32px;
+  }
+
+  .lang-item {}
+  .lang-name {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .lang-level {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Footer bar ──────────────────────────────────── */
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--muted);
+  }
+
+  .footer-roles {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--accent);
+    text-align: right;
+  }
+
+  /* ── Animations ──────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Responsive ──────────────────────────────────── */
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; }
+    .contact-stack { align-items: flex-start; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    .edu-item { grid-template-columns: 1fr; gap: 2px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 100px 1fr; }
+  }
+
+  @media print {
+    body::before { display: none; }
+    .proj-card:hover { transform: none; box-shadow: none; }
+    .section { animation: none; }
+    .hero { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-left">
+      <p class="label">BSc Data Science &amp; Artificial Intelligence</p>
+      <h1>Police<br /><em>Lokesh</em><br />Reddy</h1>
+      <p class="tagline">Transforming raw data into actionable intelligence — machine learning, analytics, and AI model development.</p>
+    </div>
+    <div class="contact-stack">
+      <span class="badge">Open to Work</span>
+      <a href="tel:+917901450537">+91 79014 50537</a>
+      <a href="mailto:lokesh.reddy_2026@woxsen.edu.in">lokesh.reddy_2026@woxsen.edu.in</a>
+      <a href="https://www.linkedin.com/in/police-lokesh-reddy/" target="_blank" rel="noopener">linkedin.com/in/police-lokesh-reddy</a>
+      <span>Medak, Telangana, India</span>
+    </div>
+  </header>
+
+  <!-- ── SUMMARY ───────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Summary</h2>
+      <span class="section-rule"></span>
+    </div>
+    <p class="summary-text">Results-driven BSc Data Science &amp; AI student at Woxsen University with hands-on experience in data analysis, machine learning, and AI model development. Proven impact through a Data Analyst internship at CiviGlo Innovations. Skilled in Python, Power BI, Tableau, and end-to-end ML pipeline development. Seeking Data Analyst, Data Science, or AI/ML roles to drive measurable business outcomes.</p>
+  </section>
+
+  <!-- ── EXPERIENCE ────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Experience</h2>
+      <span class="section-rule"></span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <span class="exp-date">Nov 2025 – Feb 2026</span>
+        <span class="exp-company">CiviGlo Innovations Pvt. Ltd.</span>
+        <span class="exp-location">Hyderabad · Hybrid</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Data Analyst Intern</div>
+        <div class="exp-sub">Project Snazzl</div>
+        <ul class="exp-bullets">
+          <li>Analyzed product feedback data and derived actionable insights to support Snazzl's data-driven decision systems, collaborating with cross-functional product and technology teams.</li>
+          <li>Contributed to product roadmap discussions by presenting data-backed findings to the CTO and senior stakeholders, improving clarity in feature prioritization.</li>
+          <li>Performed structured data research and analysis tasks, maintaining consistent quality and adhering to project deadlines across a 3-month engagement.</li>
+          <li>Maintained professional discipline in a hybrid work environment, demonstrating strong communication and remote collaboration skills.</li>
+        </ul>
+        <div class="exp-tech">
+          <span class="pill">Python</span>
+          <span class="pill">Data Analysis</span>
+          <span class="pill">Collaboration Platforms</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ───────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Projects</h2>
+      <span class="section-rule"></span>
+    </div>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-tag">Python · ML · Flask</div>
+        <div class="proj-title">Stock Price Prediction<br />Using Machine Learning</div>
+        <ul class="proj-bullets">
+          <li>End-to-end supervised ML pipeline — evaluated Linear Regression, SVM, and Random Forest to select the highest-accuracy model.</li>
+          <li>Applied feature engineering and data preprocessing to improve model generalization on financial datasets.</li>
+          <li>Deployed as a Flask web app with a Bootstrap UI, enabling real-time stock price forecasting for end users.</li>
+        </ul>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag">Python · Cryptography · Cloud Security</div>
+        <div class="proj-title">Hybrid Cloud Encryption<br />Security Model</div>
+        <ul class="proj-bullets">
+          <li>Designed a multi-algorithm cryptographic model using AES, DES, and RSA to protect sensitive data in cloud storage environments.</li>
+          <li>Addressed multi-tenancy and access control challenges with a hybrid encryption approach, strengthening data integrity.</li>
+          <li>Reduced unauthorized access risk and enhanced user trust in file storage systems.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SKILLS ─────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Technical Skills</h2>
+      <span class="section-rule"></span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-vals">Python, R, SQL</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">ML</div>
+        <div class="skill-vals">Scikit-learn, Linear Regression, SVM, Random Forest, Feature Engineering</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Analytics</div>
+        <div class="skill-vals">Pandas, NumPy, Power BI, Tableau, Excel</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">AI / Vision</div>
+        <div class="skill-vals">OpenCV, Microsoft Azure AI Services</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Web / Dev</div>
+        <div class="skill-vals">Flask, HTML/CSS, Bootstrap, Flutter, WordPress</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Cloud / DevOps</div>
+        <div class="skill-vals">Microsoft Azure, Git, GitHub</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Security</div>
+        <div class="skill-vals">AES, DES, RSA Encryption, Access Control</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ──────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Education</h2>
+      <span class="section-rule"></span>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <span class="edu-year">2023 – 2026</span>
+        <div>
+          <div class="edu-deg">BSc — Data Science &amp; Artificial Intelligence</div>
+          <div class="edu-inst">Woxsen University, Hyderabad · Majors: Data Science &amp; AI, Mathematics</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-year">2022 – 2023</span>
+        <div>
+          <div class="edu-deg">Intermediate — MPC</div>
+          <div class="edu-inst">Sri Chaitanya College</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-year">2021</span>
+        <div>
+          <div class="edu-deg">SSC (10th Grade)</div>
+          <div class="edu-inst">Geetha High School, Medak</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ─────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>Certifications</h2>
+      <span class="section-rule"></span>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-item">Machine Learning with Python</div>
+      <div class="cert-item">Statistics for Data Science with Python</div>
+      <div class="cert-item">Data Analysis &amp; Visualization with Power BI</div>
+      <div class="cert-item">Introduction to Data Analysis using Excel</div>
+      <div class="cert-item">Trees and Graphs: Basics</div>
+      <div class="cert-item">Vector Calculus for Engineers</div>
+      <div class="cert-item">Work Smarter with Microsoft Word &amp; Excel</div>
+    </div>
+  </section>
+
+  <!-- ── LANGUAGES ──────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2>Languages</h2>
+      <span class="section-rule"></span>
+    </div>
+    <div class="langs">
+      <div class="lang-item">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Professional</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Hindi</div>
+        <div class="lang-level">Fluent</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Telugu</div>
+        <div class="lang-level">Native</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer class="footer">
+    <span class="footer-note">References available upon request</span>
+    <span class="footer-roles">Data Analyst · Data Science · AI/ML · Software Roles</span>
+  </footer>
+
+</div>
+</body>
+</html>
