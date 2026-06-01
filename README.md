@@ -2,7 +2,7 @@
 
 **BSc Data Science & Artificial Intelligence**
 
-📞 +91 79014 50537 · 📧 [reddypolicelokesh@gmail.com](mailto:lokesh.reddy_2026@woxsen.edu.in) · 📍 Medak, Telangana, India · 🔗 [LinkedIn](https://www.linkedin.com/in/police-lokesh-reddy/)
+📞 +91 79014 50537 · 📧 [reddypolicelokesh@gmail.com](mailto:reddypolicelokesh@gmail.com) · 📍 Medak, Telangana, India · 🔗 [LinkedIn](https://www.linkedin.com/in/police-lokesh-reddy-106487279)
 
 > Transforming raw data into actionable intelligence — machine learning, analytics, and AI model development.
 
